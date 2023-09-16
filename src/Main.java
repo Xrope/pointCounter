@@ -9,46 +9,57 @@ public class Main {
         public static void main (String[]args){
             HashMap<String, Integer> nameAndPoints = new HashMap<>();
             boolean keepGoing = true;
+            final String nameAndPointsIsEmptyMessage = "Lägg in namn och poäng först.";
             System.out.println("Välkommen!");
             System.out.println("Här kan du skriva in namn och poäng och sedan räkna medelvärdet och ta reda på högst poängen.");
 
             do {
                 String menuItemPicked = "";
                 System.out.println();
+
                 printMenu(nameAndPoints.isEmpty());
                 menuItemPicked = sc.nextLine();
 
                 switch (menuItemPicked) {
                     case "1" -> addNamesAndPoints(nameAndPoints);
-                    case "2" -> userWithHighestPoints(nameAndPoints);
-                    case "3" -> printAverageScoreMap(nameAndPoints);
-                    case "4" -> keepGoing = false;
+                    case "2" -> {
+                        if (nameAndPoints.isEmpty()) {
+                            System.out.println(nameAndPointsIsEmptyMessage);
+                        }
+                        else {
+                            userWithHighestPoints(nameAndPoints);
+                        }
+                    }
+                    case "3" -> {
+                        if(nameAndPoints.isEmpty()){
+                            System.out.println(nameAndPointsIsEmptyMessage);
+                        }else {
+                            printAverageScoreMap(nameAndPoints);
+                        }
+                    }
+                    case "4" -> {
+                        keepGoing = false;
+                        System.out.println("Tack för att du använde programmet!");
+                    }
                     default -> System.out.println("Ogiltigt menyval");
                 }
-
-
             }while (keepGoing);
-
-
-            System.out.println(nameAndPoints);
-
         }
+
 
         static void printMenu(boolean isNameAndPointsEmpty){
             System.out.println("___________Meny___________");
             System.out.println("1. Lägg in namn och poäng");
-            System.out.println("2. Visa vem som har högstpoäng." + (isNameAndPointsEmpty ? "Lägg in namn och poäng först.": ""));
-            System.out.println("3. Räkna ut medelvärdet." + (isNameAndPointsEmpty ? "Lägg in namn och poäng först.": ""));
+            System.out.println("2. Visa vem som har högstpoäng." + (isNameAndPointsEmpty ? " (Lägg in namn och poäng först.)": ""));
+            System.out.println("3. Räkna ut medelvärdet." + (isNameAndPointsEmpty ? " (Lägg in namn och poäng först.)": ""));
             System.out.println(("4. Avsluta"));
 
         }
 
         static void addNamesAndPoints(HashMap<String, Integer> nameAndPoints){
             boolean oneMore = true;
-
-
             while (oneMore) {
-                System.out.println("Skriv namn. Om du vill avlsuta tryck Enter.");
+                System.out.println("Skriv namn. Om du lagt in alla tryck Enter.");
                 String name = sc.nextLine();
                 if (!name.isEmpty()) {
 
@@ -59,8 +70,6 @@ public class Main {
                     if (!nameAndPoints.containsKey(name)){
                         nameAndPoints.put(name, points);
                     }
-//                System.out.println("Vill du lägga till en till?");
-//                String again = sc.nextLine();
                 } else {
                     oneMore = false;
                 }
@@ -78,6 +87,8 @@ public class Main {
                 }
             }
             System.out.println("Personen med högst poäng var " + nameOfHighestPoints + ". Poängen var " + highestPoints);
+            System.out.println("Vill du tillbaka till menyn tryck på enter");
+            sc.nextLine();
         }
 
     static void printAverageScoreMap(HashMap<String, Integer> nameAndPoints) {
@@ -89,6 +100,8 @@ public class Main {
         double averagePoints = sumOfPoints / nameAndPoints.size();
 
         System.out.println("Medelpoängen är " + averagePoints);
+        System.out.println("Vill du tillbaka till menyn tryck på enter");
+        sc.nextLine();
     }
 }
 
