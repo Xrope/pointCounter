@@ -50,13 +50,11 @@ public class Main {
         static void printMenu(boolean isNameAndPointsEmpty){
             System.out.println("___________Meny___________");
             System.out.println("1. Lägg in namn och poäng");
-            if (!isNameAndPointsEmpty){
+            if (!isNameAndPointsEmpty){ // Hide values if map is empty
                 System.out.println("2. Visa vem som har högstpoäng.");
                 System.out.println("3. Räkna ut medelvärdet.");
             }
-
             System.out.println(("0. Avsluta"));
-
         }
 
         static void addNamesAndPoints(HashMap<String, Integer> nameAndPoints){
