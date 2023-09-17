@@ -37,7 +37,7 @@ public class Main {
                             printAverageScoreMap(nameAndPoints);
                         }
                     }
-                    case "4" -> {
+                    case "0" -> {
                         keepGoing = false;
                         System.out.println("Tack för att du använde programmet!");
                     }
@@ -50,9 +50,12 @@ public class Main {
         static void printMenu(boolean isNameAndPointsEmpty){
             System.out.println("___________Meny___________");
             System.out.println("1. Lägg in namn och poäng");
-            System.out.println("2. Visa vem som har högstpoäng." + (isNameAndPointsEmpty ? " (Lägg in namn och poäng först.)": ""));
-            System.out.println("3. Räkna ut medelvärdet." + (isNameAndPointsEmpty ? " (Lägg in namn och poäng först.)": ""));
-            System.out.println(("4. Avsluta"));
+            if (!isNameAndPointsEmpty){
+                System.out.println("2. Visa vem som har högstpoäng.");
+                System.out.println("3. Räkna ut medelvärdet.");
+            }
+
+            System.out.println(("0. Avsluta"));
 
         }
 
