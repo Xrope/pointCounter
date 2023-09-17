@@ -66,6 +66,7 @@ public class Main {
 
                     System.out.println("Skriv in poängen");
 
+                    
                     int points = sc.nextInt();
                     sc.nextLine();
                     if (!nameAndPoints.containsKey(name)){
